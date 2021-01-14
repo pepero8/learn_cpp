@@ -1,2 +1,2 @@
 # learn_cpp
-simple cpp projects for study
+simple cpp excersises for study
