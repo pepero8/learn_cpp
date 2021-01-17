@@ -2,17 +2,25 @@
 #include <string.h>
 
 class Person {
-	char name_[30];
+	char* name_;
 	int age_;
 	
 	public:
 		void set_person(const char* name, int age) {
+			name_ = new char[strlen(name) + 1];
 			strcpy(name_, name);
 			age_ = age;
 		}
 		
 		void print_person() {
 			std::cout << "Name: " << name_ << "\nAge: " << age_ << std::endl;
+		}
+		
+		/*destructor*/
+		~Person() {
+			std::cout << name_ << ": destructor called" << std::endl;
+			if (name_ != NULL)
+				delete[] name_;
 		}
 };
 
@@ -60,12 +68,18 @@ void Animal::showStat() {
 int main(int argc, char** argv) {
 	/*basic class practice*/
 	Person person;
+	Person* person2 = new Person;
 	Animal animal1(1, 0, 100);
 	Animal animal2 = Animal(2, 50, 50);
 	Animal animal3;
 	
 	person.set_person("pepero", 99);
 	person.print_person();
+	
+	person2->set_person("pepero2", 50);
+	person2->print_person();
+	
+	delete person2;
 	
 	std::cout << std::endl;
 	
