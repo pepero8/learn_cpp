@@ -1,7 +1,9 @@
 #include <iostream>
 
-void changeValue(int& p) {
-	p++;
+void changeValue(int& p1, int* p2) {
+	std::cout << "p1 address: " << &p1 << ", p2 address: " << &p2 << std::endl;
+	p1++;
+	*p2++;
 }
 
 int& returnRef() {
@@ -61,7 +63,8 @@ int main(int argc, char** argv) {
 	another_a = (int)b;
 	std::cout << "a: " << a << '\n' << std::endl;
 	
-	changeValue(a); //int& p = a;
+	std::cout << "a address: " << &a << ", c address: " << &c << std::endl;
+	changeValue(a, c); //int& p1 = a, int* p2 = c;
 	std::cout << "a: " << a << '\n' << std::endl;
 	
 	/*basic reference practice2*/
