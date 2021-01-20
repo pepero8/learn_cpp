@@ -31,12 +31,13 @@ class Animal {
 	
 	public:
 		/*constructor*/
-		Animal(int age, int hunger, int clean) {
-			age_ = age;
-			hunger_ = hunger;
-			clean_ = clean;
-		}
+		Animal(int age, int hunger, int clean) : age_(age), hunger_(hunger), clean_(clean) {} //initializer list
 		
+		/*constructor*/
+		Animal(int age_)
+			: age_(age_), hunger_(0), clean_(100) {}
+		
+		/*constructor*/
 		Animal() {
 			age_ = 1;
 			hunger_ = 0;
@@ -48,12 +49,20 @@ class Animal {
 };
 
 class Test {
+	static int count;
+	
 	public:
 		Test() = default;
-		void test() {
-			std::cout << "Test created" << std::endl;
+		void count_inc() {
+			count++;
+		}
+		
+		static void showCount() {
+			std::cout << "count: " << count << std::endl;
 		}
 };
+
+int Test::count = 0;
 
 void Animal::setStat(int age, int hunger, int clean) {
 	age_ = age;
@@ -66,12 +75,10 @@ void Animal::showStat() {
 }
 
 int main(int argc, char** argv) {
-	/*basic class practice*/
+	/*basic class practice1*/
+	std::cout << "--Practice1--" << std::endl;
 	Person person;
 	Person* person2 = new Person;
-	Animal animal1(1, 0, 100);
-	Animal animal2 = Animal(2, 50, 50);
-	Animal animal3;
 	
 	person.set_person("pepero", 99);
 	person.print_person();
@@ -83,16 +90,39 @@ int main(int argc, char** argv) {
 	
 	std::cout << std::endl;
 	
+	/*basic class practice2*/
+	std::cout << "--Practice2--" << std::endl;
+	Animal animal1(1, 0, 100);
+	Animal animal2 = Animal(2, 50, 50);
+	Animal animal3;
+	Animal animal4(2);
+	
 	animal1.showStat();
 	std::cout << std::endl;
+	
 	animal2.showStat();
 	std::cout << std::endl;
+	
 	animal3.setStat(1, 0, 80);
 	animal3.showStat();
 	std::cout << std::endl;
 	
-	Test test;
-	test.test();
+	animal4.showStat();
+	std::cout <<std::endl;
+	
+	/*basic class practice3*/
+	std::cout << "--Practice3--" << std::endl;
+	Test test1;
+	Test test2;
+	Test test3;
+	
+	test1.count_inc();
+	test2.count_inc();
+	test3.count_inc();
+	
+	Test::showCount();
+	
+	std::cout << std::endl;
 	
 	return 0;
 }
