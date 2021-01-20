@@ -31,6 +31,17 @@ int& returnRef5(int a) {
 	return b;
 }
 
+class A {
+	int x;
+	
+	public:
+		A(int c) : x(c) {}
+
+		int& access_x() { return x; }
+		int get_x() { return x; }
+		void show_x() { std::cout << x << std::endl; }
+};
+
 int main(int argc, char** argv) {
 	/*basic reference practice1*/
 	std::cout << "--Practice1--" << std::endl;
@@ -123,6 +134,26 @@ int main(int argc, char** argv) {
 	
 	int h = returnRef5(6);
 	std::cout << "h: " << h << '\n' << std::endl;
+	
+	/*basic reference practice5*/
+	std::cout << "--Practice5--" << std::endl;
+	A test(5);
+	test.show_x();
+
+	int& test_ref = test.access_x();
+	test_ref = 4;
+	test.show_x();
+
+	int k = test.access_x();
+	k = 3;
+	test.show_x();
+
+	int l = test.get_x();
+	l = 1;
+	test.show_x();
+	
+	test.access_x() = 3; //test.x = 3;
+	test.show_x();
 	
 	return 0;
 }
