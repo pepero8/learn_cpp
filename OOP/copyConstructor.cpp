@@ -18,7 +18,7 @@ class Person {
 			name = new char[strlen(_name) + 1];
 			strcpy(name, _name);
 		}
-		
+			
 		/*copy constructor*/
 		Person(const Person& person) {
 			age = person.age;
@@ -45,6 +45,7 @@ class Animal {
 	char* type;
 	
 	public:
+		/*constructor*/
 		Animal(int _age, const char* _type) {
 			age = _age;
 			type = new char[strlen(_type) + 1];
@@ -70,11 +71,13 @@ class Animal {
 };
 
 int main(int argc, char** argv) {
-	/*basic copy constructor practice*/
+	/*basic copy constructor practice1*/
+	std::cout << "--Practice1--" << std::endl;
 	Person p(50, "pepero");
 	Person p1;
-	Person p2 = Person(p);
+	Person p2 = p;
 	Person p3 = p2;
+	Person p4 = Person(p3);
 	
 	p1 = p2;
 	
@@ -84,9 +87,12 @@ int main(int argc, char** argv) {
 	p1.print();
 	p2.print();
 	p3.print();
+	p4.print();
 	
 	std::cout << std::endl;
 	
+	/*basic copy constructor practice2*/
+	std::cout << "--Practice2--" << std::endl;
 	Animal a1(1, "dog");
 	//Animal a2 = Animal(a1); //calls default copy constructor, 'type' variable is shallow copied -> at the end of the program, it terminates with error
 	
