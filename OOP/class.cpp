@@ -62,6 +62,16 @@ class Test {
 		}
 };
 
+class Test2 {
+	int var_;
+	
+	public:
+		explicit Test2(int var): var_(var) {}
+		static void function(Test2 t) {
+			std::cout << "function called: " << t.var_ << std::endl;
+		}
+};
+
 int Test::count = 0;
 
 void Animal::setStat(int age, int hunger, int clean) {
@@ -123,6 +133,12 @@ int main(int argc, char** argv) {
 	Test::showCount();
 	
 	std::cout << std::endl;
+	
+	/*basic class practice4*/
+	std::cout << "--Practice4--" << std::endl;
+	
+	Test2::function(Test2(5));
+	//Test2::function(5); //complie error
 	
 	return 0;
 }
