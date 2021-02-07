@@ -66,9 +66,14 @@ class Test2 {
 	int var_;
 	
 	public:
-		explicit Test2(int var): var_(var) {}
+		explicit Test2(int var = 0 /*default parameter*/): var_(var) {}
+		
 		static void function(Test2 t) {
 			std::cout << "function called: " << t.var_ << std::endl;
+		}
+		
+		void printVar() {
+			std::cout << "var: " << var_ << std::endl;
 		}
 };
 
@@ -136,6 +141,8 @@ int main(int argc, char** argv) {
 	
 	/*basic class practice4*/
 	std::cout << "--Practice4--" << std::endl;
+	Test2 test4;
+	test4.printVar();
 	
 	Test2::function(Test2(5));
 	//Test2::function(5); //complie error
