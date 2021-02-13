@@ -68,12 +68,24 @@ int main(int argc, char** argv) {
 	std::cout << "--Practice3--" << std::endl;
 	d2.change();
 	
+	std::cout << std::endl;
+	
 	/*basic inheritance practice4*/
 	std::cout << "--Practice4--" << std::endl;
 	Base b;
 	Derived3 d3;
 	std::cout << b.var << std::endl;
 	//std::cout << d3.var << std::endl; -> var inaccessible
+	
+	std::cout << std::endl;
+	
+	/*basic inheritance practice5*/
+	std::cout << "--Practice5--" << std::endl;
+	Derived2 d4;
+	
+	Base* ptr = &d4; //up casting
+	
+	ptr->function();
 	
 	return 0;
 }
