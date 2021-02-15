@@ -92,17 +92,19 @@ void Animal::showStat() {
 int main(int argc, char** argv) {
 	/*basic class practice1*/
 	std::cout << "--Practice1--" << std::endl;
-	Person person;
-	Person* person2 = new Person;
-	
-	person.set_person("pepero", 99);
-	person.print_person();
-	
-	person2->set_person("pepero2", 50);
-	person2->print_person();
-	
-	delete person2;
-	
+	{
+		Person person;
+		Person* person2 = new Person;
+		
+		person.set_person("pepero", 99);
+		person.print_person();
+		
+		person2->set_person("pepero2", 50);
+		person2->print_person();
+		
+		delete person2;
+	}
+		
 	std::cout << std::endl;
 	
 	/*basic class practice2*/
