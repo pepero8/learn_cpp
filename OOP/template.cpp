@@ -61,6 +61,52 @@ class Test2 {
 		}
 };
 
+template <typename T>
+void print(T arg) {
+	std::cout << "first print():" << arg << std::endl;
+}
+
+template <typename... Types>
+void print(Types... args) {
+	std::cout << "second print()" << std::endl;
+	print(args...);
+}
+
+template <typename T, typename... Types>
+void print(T arg, Types... args) {
+	std::cout << "third print():" << arg << std::endl;
+	print(args...);
+}
+
+template <typename Num>
+int sum_all(Num n) { return n; }
+
+template <typename Num, typename... Nums>
+int sum_all(Num n, Nums... ns) {
+	return n + sum_all(ns...);
+}
+
+template <typename... Nums>
+double average(Nums... nums) {
+	return static_cast<double>(sum_all(nums...)) / sizeof...(nums);
+}
+
+template <typename Int, typename... Ints>
+int sum_all2(Int start, Ints... nums) {
+	return (start + ... + nums); //Fold expression
+}
+
+template <typename T>
+void do_something(T arg) {
+	std::cout << "do something with: " << arg << std::endl;
+}
+
+template <typename... Types>
+void do_many_things(Types... args) {
+	(... , do_something(args));
+	//(do_something(args), ...);
+}
+
 int main(int argc, char** argv) {
 	//basic template practice1
 	std::cout << "--Practice1--" << std::endl;
@@ -101,6 +147,31 @@ int main(int argc, char** argv) {
 	std::cout << "--Practice5--" << std::endl;
 	Test2<int> test4;
 	std::cout << test4.addNum(7) << std::endl;
+	
+	std::cout << std::endl;
+	
+	//basic template practice6
+	std::cout << "--Practice6--" << std::endl;
+	print(1, 3.14, "abc");
+	print(1);
+	
+	std::cout << std::endl;
+	
+	//basic template practice7
+	std::cout << "--Practice7--" << std::endl;
+	std::cout << "average: " << average(1, 4, 2, 3, 10) << std::endl;
+	
+	std::cout << std::endl;
+	
+	//basic template practice8
+	std::cout << "--Practice8--" << std::endl;
+	std::cout << sum_all2(1, 2, 3, 4, 5) << std::endl;
+	
+	std::cout << std::endl;
+	
+	//basic template practice9
+	std::cout << "--Practice9--" << std::endl;
+	do_many_things("hello", 1, 2, 3.14, std::string("world"));
 	
 	return 0;
 }
